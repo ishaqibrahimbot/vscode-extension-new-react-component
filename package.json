@@ -1,6 +1,6 @@
 {
-  "name": "new-react-component",
-  "displayName": "New React Component",
+  "name": "new-react-component-boilerplate",
+  "displayName": "New React Component Boilerplate",
   "description": "If you've got a folder named 'components' in your React project, let this extension automatically create boilerplate components and do all the re-exporting for you every time you make a new component!",
   "version": "0.0.1",
   "keywords": [
