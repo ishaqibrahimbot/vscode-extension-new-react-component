@@ -1,11 +1,21 @@
 {
   "name": "new-react-component",
   "displayName": "New React Component",
-  "description": "",
+  "description": "If you've got a folder named 'components' in your React project, let this extension automatically create boilerplate components and do all the re-exporting for you every time you make a new component!",
   "version": "0.0.1",
+  "keywords": [
+    "react",
+    "components",
+    "re-exports",
+    "nextjs"
+  ],
   "publisher": "ishaqibrahim",
   "engines": {
     "vscode": "^1.65.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ishaqibrahimbot/vscode-extension-new-react-component.git"
   },
   "categories": [
     "Other"
