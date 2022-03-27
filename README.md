@@ -1,70 +1,65 @@
-# new-react-component README
+# New React Component
 
-This is the README for your extension "new-react-component". After writing up a brief description, we recommend including the following sections.
+Every React project, especially if it's a Next.js project, will have a 'components' folder somewhere where you will maintain all
+your components. These may also be categorized inside the components folder so that some are in a 'common' sub-folder while others
+are in a 'ui' sub-folder, and so on.
+
+To make importing these in other parts of your application easier, we use a re-exporting pattern where the component is re-exported
+from its category folder. E.g. if I have a 'Navbar' component inside a 'common' folder inside the 'components' folder, there will
+be an index.ts inside the Navbar folder which exports the component to the common folder, and then there will be another index.ts
+inside the common folder which re-exports the same Navbar.
+
+In this way, if you have multiple components inside common and need to import them in a file, you can simply do it like this:
+import { ComponentA, ComponentB, ComponentC } from '../components/common'
+
+If you follow this pattern and you use TypeScript as well, you will know how much of a (small but consistent) pain it is to set up the files for a new component. You have to make the folder, then the file inside the folder, then an index.ts file inside the same
+folder, then add the boilerplate for the react component, export it, and then re-export it from the parent folder.
+
+This extension is made to solve that problem.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Whenever you create a new component folder inside a 'components' folder in your project, this extension will ask you if
+you want to set up the component. If so, it will create the boilerplate component file and do the export and re-export
+automaticaly.
 
-For example if there is an image subfolder under your extension project workspace:
+Right now, this is what the component file will look like:
 
-\!\[feature X\]\(images/feature-x.png\)
+```
+import { FC, useState, useEffect } from 'react'
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+export interface {{ComponentName}}Props {
 
-## Requirements
+}
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+const {{ComponentName}} : FC<{{ComponentName}}Props> = () => {
+    return <div></div>
+}
 
-## Extension Settings
+export default {{ComponentName}}
+```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+In the future, I will add support for customization, i.e. you will be able to set the template for the
+file yourself to suit your needs and development patterns.
 
-For example:
+## How to use
 
-This extension contributes the following settings:
+Once the extension is installed and you've opened your project's workspace, press Ctrl + Shift + P or Cmd + Shift + P on Mac
+to open the command pallette.
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+Run the command 'Initialize Ishaq Extension'.
 
-## Known Issues
+The extension will search for a folder named 'components' in your workspace and save its Uri.
+Note: if there are multiple folders named 'components', it will prompt you to select the right one from a list.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Once the components folder is selected, go to the components folder and create a new folder inside it (or inside any
+sub-folder at any level inside the components folder).
 
-## Release Notes
+When you do this, you will be prompted to select whether you want to set up the component or do nothing.
 
-Users appreciate release notes as you update your extension.
+If you select the set up option, the extension will do its job and make the boilerplate files and do the re-exporting
+for you.
 
-### 1.0.0
+That's it. Enjoy!
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+If you have any suggestions, send them to ishaqibrahimbss@gmail.com
